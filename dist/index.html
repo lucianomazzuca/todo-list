@@ -13,11 +13,10 @@
     </header>
 
     <div class="container">
-
         <div class="sidebar">
             <h2>Projects</h2>
 
-            <button>Add project</button>
+            <button id="add-project">Add project</button>
 
             <div class="project-container">
                 <div class="project">
@@ -64,7 +63,14 @@
                 </div>
             </div>
         </div>
-        
+    </div>
+
+    <div class="popup-bg" id="project-form">
+        <form action="">
+            <label for="name">Enter the project name</label>
+            <input type="text" name="name" id="project-name">
+            <button type="submit" id="sumbmit-project">Submit</button>
+        </form>
     </div>
 
     

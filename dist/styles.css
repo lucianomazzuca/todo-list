@@ -97,3 +97,49 @@ header{
 .task-card button{
     height: 25px;
 }
+
+.popup-bg{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    display: none;
+}
+
+.popup-bg form{
+    background-color: white;
+    width: 300px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    padding: 20px;
+}
+
+.popup-bg form input{
+    margin: 15px 0;
+    height: 30px;
+}
+
+.popup-bg form button{
+    font-size: 18px;
+    border: none;
+    background-color: rgb(0, 162, 255);
+    border: 2px solid white;
+	border-radius: 30px;
+	text-decoration: none;
+	padding: 10px 28px;
+	color: white;
+	margin-top: 10px;
+}
+
+.popup-bg form button:hover{
+    background-color: white;
+    color: rgb(0, 162, 255);
+    border: 2px solid rgb(0, 162, 255);
+    cursor: pointer;
+}
