@@ -86,4 +86,4 @@ dbProjects.addTask(1, task1);
 dbProjects.addTask(1, task2);
 
 
-export default dbProjects;
+export {dbProjects, Task}

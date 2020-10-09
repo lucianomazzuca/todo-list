@@ -1,7 +1,8 @@
-import dbProjects from "./projectsController";
+import {dbProjects, Task} from "./projectsController";
 
 const event = function () {
-    const currentTask = 1;
+    let currentProject = 1;
+
     //Cache DOM
     const formProject = document.querySelector("#project-form");
     const formTask = document.querySelector("#task-form")
@@ -10,11 +11,15 @@ const event = function () {
     );
     const btnSubmitProject = document.querySelector("#sumbmit-project");
     const btnAddProject = document.getElementById("add-project");
+    const btnAddTask = document.getElementById("add-task-btn");
+    const btnSubmitTask = document.getElementById('sumbmit-task');
 
 
     //Bind Events
     btnAddProject.addEventListener("click", openFormProject);
     btnSubmitProject.addEventListener("click", getNewProjectName);
+    btnAddTask.addEventListener("click", openFormTask);
+    btnSubmitTask.addEventListener('click', getNewTaskName);
 
     function bindProjectLinks() {
         const projectLink = document.querySelectorAll(".project");
@@ -30,6 +35,14 @@ const event = function () {
 
     function closeFormProject() {
         formProject.style.display = "none";
+    }
+
+    function openFormTask() {
+        formTask.style.display = "flex";
+    }
+
+    function closeFormTask() {
+        formTask.style.display = 'none';
     }
 
     function deleteProjectContainer() {
@@ -50,6 +63,23 @@ const event = function () {
         bindProjectLinks()
         closeFormProject();
     }
+
+    function getNewTaskName(e) {
+        e.preventDefault();
+
+        //cache task
+        const taskTitle = document.querySelector("#task-title").value;
+        const taskDescription = document.querySelector('#task-description').value;
+        const taskDate = document.querySelector('#task-date').value;
+        const taskPriority = document.querySelector('#task-priority').value;
+
+        const newTask = new Task(taskTitle, taskDescription, taskPriority, taskDate);
+
+        dbProjects.addTask(currentProject, newTask);
+        console.log(dbProjects.getTaskFromProject(currentProject));
+        renderTasks();
+        closeFormTask();
+    }
     
     function deleteTaskContainer() {
         const elements = document.getElementsByClassName("task-card");
@@ -58,8 +88,8 @@ const event = function () {
         }
     }
 
-    function getTasks(e) {
-        let projectIndex = e.target.id;
+    function getTasks(index) {
+        let projectIndex = index;
         let tasks = dbProjects.getTaskFromProject(projectIndex);
 
         console.log(tasks);
@@ -67,7 +97,12 @@ const event = function () {
     }
 
     function renderTasks(e) {
-        const tasks = getTasks(e);
+        if(e == undefined){
+            currentProject = 1;
+        } else{
+            currentProject = e.target.id;
+        }
+        const tasks = getTasks(currentProject);
         deleteTaskContainer();
 
         tasks.forEach(function (task, index) {
