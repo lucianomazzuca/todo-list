@@ -108,12 +108,11 @@ header{
     display: flex;
     justify-content: center;
     align-items: center;
-    display: none;
 }
 
 .popup-bg form{
     background-color: white;
-    width: 300px;
+    width: 400px;
     display: flex;
     align-items: center;
     flex-direction: column;
@@ -123,7 +122,9 @@ header{
 .popup-bg form input{
     margin: 15px 0;
     height: 30px;
+    width: 300px;
 }
+
 
 .popup-bg form button{
     font-size: 18px;
@@ -142,4 +143,12 @@ header{
     color: rgb(0, 162, 255);
     border: 2px solid rgb(0, 162, 255);
     cursor: pointer;
+}
+
+#project-form {
+    display: none;
+}
+
+#task-form {
+    display: none;
 }

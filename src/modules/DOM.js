@@ -1,15 +1,17 @@
 import dbProjects from "./projectsController";
 
 const event = function () {
+    const currentTask = 1;
     //Cache DOM
     const formProject = document.querySelector("#project-form");
+    const formTask = document.querySelector("#task-form")
     const projectContainer = document.getElementsByClassName(
         "project-container"
     );
     const btnSubmitProject = document.querySelector("#sumbmit-project");
     const btnAddProject = document.getElementById("add-project");
 
-    
+
     //Bind Events
     btnAddProject.addEventListener("click", openFormProject);
     btnSubmitProject.addEventListener("click", getNewProjectName);
@@ -21,6 +23,7 @@ const event = function () {
         });
     }
 
+    
     function openFormProject() {
         formProject.style.display = "flex";
     }
@@ -47,6 +50,13 @@ const event = function () {
         bindProjectLinks()
         closeFormProject();
     }
+    
+    function deleteTaskContainer() {
+        const elements = document.getElementsByClassName("task-card");
+        while (elements.length > 0) {
+            elements[0].parentNode.removeChild(elements[0]);
+        }
+    }
 
     function getTasks(e) {
         let projectIndex = e.target.id;
@@ -54,13 +64,6 @@ const event = function () {
 
         console.log(tasks);
         return tasks;
-    }
-
-    function deleteTaskContainer() {
-        const elements = document.getElementsByClassName("task-card");
-        while (elements.length > 0) {
-            elements[0].parentNode.removeChild(elements[0]);
-        }
     }
 
     function renderTasks(e) {
